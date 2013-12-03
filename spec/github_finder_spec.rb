@@ -1,8 +1,9 @@
 require_relative '../lib/github_finder'
 require_relative '../lib/http_searcher'
 require_relative '../lib/json_parser'
+require_relative '../lib/stdout_printer'
 
-describe GithubFinder do
+describe GithubFinder, 'configuration' do
   it 'accepts a username as argument' do
     username = 'example_user'
     finder = GithubFinder.new username
@@ -38,5 +39,20 @@ describe GithubFinder do
     finder = GithubFinder.new username
 
     expect(finder.data_parser).to be JSONParser
+  end
+
+  it 'accepts a result printer as an option' do
+    username = 'example_user'
+    result_printer = double('result_printer')
+    finder = GithubFinder.new username, result_printer: result_printer
+
+    expect(finder.result_printer).to eq result_printer
+  end
+
+  it 'defaults to STDOUTPrinter if no result_printer is passed in' do
+    username = 'example_user'
+    finder = GithubFinder.new username
+
+    expect(finder.result_printer).to be STDOUTPrinter
   end
 end
