@@ -18,12 +18,12 @@ describe GithubFinder::STDOUTPrinter do
   end
 end
 
-describe GithubFinder::STDOUTPrinter, '#print_message' do
+describe GithubFinder::STDOUTPrinter, '.print_message' do
   it 'prints the a formatted message to STDOUT' do
     username = 'example_user'
     message = 'Ruby'
     formatted_message = "#{username} prefers #{message}!"
-    printed_message = GithubFinder::STDOUTPrinter.new(username, message).print_message
+    printed_message = GithubFinder::STDOUTPrinter.print_message username, message
 
     expect(printed_message).to eq formatted_message
   end

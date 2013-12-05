@@ -7,7 +7,11 @@ module GithubFinder
       @username = username
     end
 
-    def print_message
+    def self.print_message(username, message)
+      new(username, message).print_formatted_message
+    end
+
+    def print_formatted_message
       formatted_message
     end
 

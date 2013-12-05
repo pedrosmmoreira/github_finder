@@ -33,7 +33,7 @@ module GithubFinder
     end
 
     def print_preferred_language
-      result_printer.new(username, preferred_language).print_message
+      result_printer.print_message username, preferred_language
     end
   end
 end
