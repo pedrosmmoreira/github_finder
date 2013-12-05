@@ -7,7 +7,7 @@ A small command-line tool for searching a username on Github and returning the p
 
 Searching for 'tenderlove':
 
-Run `ruby bin/github_finder tenderlove`
+Run `ruby bin/github_finder.rb tenderlove`
 
 Outputs
 
