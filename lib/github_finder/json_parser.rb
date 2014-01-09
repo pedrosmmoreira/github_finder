@@ -17,25 +17,29 @@ module GithubFinder
     end
 
     def repos
-      repos = []
-      user_events.each do |event|
-        repos << event[:repository] if event.has_key?(:repository)
+      user_events.inject([]) do |result, event|
+        result << event[:repository] if event.has_key?(:repository)
+        result
       end
-      repos
     end
 
     def languages
-      language_count = Hash.new 0
-      repos.each do |repo|
+      repos.inject(language_count) do |result, repo|
         if repo.has_key?(:language)
-          language_count[repo[:language]] += 1
+          result[repo[:language]] += 1
         end
+        result
       end
-      language_count
+    end
+
+    def language_count
+      Hash.new 0
     end
 
     def preferred_language
       languages.max_by(&:first)[0]
     end
+
+    private :language_count
   end
 end

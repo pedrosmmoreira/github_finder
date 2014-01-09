@@ -15,11 +15,6 @@ module GithubFinder
 
     private
 
-    def search_and_parse_data
-      search_data
-      parse_data
-    end
-
     def search_data
       searcher.find_by username
     end
